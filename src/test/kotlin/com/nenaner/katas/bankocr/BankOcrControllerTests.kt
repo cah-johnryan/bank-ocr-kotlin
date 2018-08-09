@@ -18,5 +18,14 @@ object BankOcrControllerTests: Spek({
                 assertEquals(1, result)
             }
         }
+        on("scanning an image of a \"2\" from the page") {
+            val result = bankOcrController.scan(
+                    " _ \n" +
+                                " _|\n" +
+                                "|_ ")
+            it("should return 2") {
+                assertEquals(2, result)
+            }
+        }
     }
 })
