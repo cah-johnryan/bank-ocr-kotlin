@@ -30,13 +30,16 @@ dependencies {
 
     // Spek
     testCompile "org.jetbrains.kotlin:kotlin-reflect:1.2.60"
-    testCompile ('org.jetbrains.spek:spek-api:1.1.5') {
+    testCompile('org.jetbrains.spek:spek-api:1.1.5') {
         exclude group: 'org.jetbrains.kotlin'
     }
-    testRuntime ('org.jetbrains.spek:spek-junit-platform-engine:1.1.5') {
+    testRuntime('org.jetbrains.spek:spek-junit-platform-engine:1.1.5') {
         exclude group: 'org.junit.platform'
         exclude group: 'org.jetbrains.kotlin'
     }
+
+    testCompile "com.nhaarman:mockito-kotlin:1.6.0"
+}
 
 test {
     // Enable JUnit 5 (Gradle 4.6+).
@@ -58,4 +61,4 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
-}}
+}

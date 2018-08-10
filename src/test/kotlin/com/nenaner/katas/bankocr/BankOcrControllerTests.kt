@@ -1,80 +1,39 @@
 package com.nenaner.katas.bankocr
 
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.whenever
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
-import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.function.Executable
 
-object BankOcrControllerTests : Spek({
+object BankOcrControllerTests: Spek({
     given("a bank OCR Controller") {
-        val bankOcrController = BankOcrController()
+        val mockFaxReader = mock<FaxReader>()
+        val bankOcrController = BankOcrController(mockFaxReader)
         on("scanning an image of a single image of a number from the page") {
+            whenever(mockFaxReader.readNextCharacter()).thenReturn("   \n" +
+                    "  |\n" +
+                    "  |")
             it("should be able to interpret the single number provided") {
-                assertAll(
-                        Executable {
-                            assertEquals(1, bankOcrController.scan(
-                                    "   \n" +
-                                            "  |\n" +
-                                            "  |"))
-                        },
-                        Executable {
-                            assertEquals(2, bankOcrController.scan(
-                                    " _ \n" +
-                                            " _|\n" +
-                                            "|_ "))
-                        },
-                        Executable {
-                            assertEquals(3, bankOcrController.scan(
-                                    " _ \n" +
-                                            " _|\n" +
-                                            " _|"))
-                        },
-                        Executable {
-                            assertEquals(4, bankOcrController.scan(
-                                    "   \n" +
-                                            "|_|\n" +
-                                            "  |"))
-                        },
-                        Executable {
-                            assertEquals(5, bankOcrController.scan(
-                                    " _ \n" +
-                                            "|_ \n" +
-                                            " _|"))
-                        },
-                        Executable {
-                            assertEquals(6, bankOcrController.scan(
-                                    " _ \n" +
-                                            "|_ \n" +
-                                            "|_|"))
-                        },
-                        Executable {
-                            assertEquals(7, bankOcrController.scan(
-                                    " _ \n" +
-                                            "  |\n" +
-                                            "  |"))
-                        },
-                        Executable {
-                            assertEquals(8, bankOcrController.scan(
-                                    " _ \n" +
-                                            "|_|\n" +
-                                            "|_|"))
-                        },
-                        Executable {
-                            assertEquals(9, bankOcrController.scan(
-                                    " _ \n" +
-                                            "|_|\n" +
-                                            " _|"))
-                        },
-                        Executable {
-                            assertEquals(0, bankOcrController.scan(
-                                    " _ \n" +
-                                            "| |\n" +
-                                            "|_|"))
-                        }
-                )
+                assertEquals(1, bankOcrController.scan())
+            }
+        }
+        on("scanning an image of a \"2\" from the page") {
+            whenever(mockFaxReader.readNextCharacter()).thenReturn(" _ \n" +
+                    " _|\n" +
+                    "|_ ")
+            it("should return 2") {
+                assertEquals(2, bankOcrController.scan())
+            }
+        }
+        on("scanning an image of a \"3\" from the page") {
+            whenever(mockFaxReader.readNextCharacter()).thenReturn(" _ \n" +
+                    " _|\n" +
+                    " _|")
+            it("should return 3") {
+                assertEquals(3, bankOcrController.scan())
             }
         }
     }
