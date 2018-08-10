@@ -1,8 +1,11 @@
 # KataBankOCR
 
-#### Credit to: 
-- https://codingdojo.org/kata/BankOCR/
-- https://github.com/PHPirates/kotlin-template-project/blob/master/build.gradle
+#### References 
+- kata source: https://codingdojo.org/kata/BankOCR/
+- Seed for this build: https://github.com/PHPirates/kotlin-template-project/blob/master/build.gradle
+- https://junit.org/junit5/docs/current/user-guide/
+- https://github.com/kotlintest/kotlintest
+- http://spekframework.github.io/spek/docs/latest/
 
 ##Problem Description
 ###User Story 1
