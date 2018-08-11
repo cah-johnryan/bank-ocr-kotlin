@@ -38,7 +38,8 @@ class BankOcrController(private val faxReader: FaxReader) {
         return getNumberFromImage(faxReader.readNextCharacter())
     }
 
-    private fun getNumberFromImage(sourceImage: String): Int? {
+    private fun getNumberFromImage(sourceImage: String): Int {
         return imageMap[sourceImage]
+                ?: throw NumberFormatException("An invalid character was encountered in the fax document.")
     }
 }
