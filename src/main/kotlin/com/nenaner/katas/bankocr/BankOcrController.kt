@@ -41,11 +41,11 @@ class BankOcrController(private val faxReader: FaxReader) {
 
     fun scan(): Int? {
         var currentSum = 0
-        var nextImageRead = faxReader.readNextCharacter()
-        while (nextImageRead != null) {
-            val nextNumber = getNumberFromImage(nextImageRead)
+        var nextImage = faxReader.readNextCharacter()
+        while (nextImage != null) {
+            val nextNumber = getNumberFromImage(nextImage)
             currentSum = currentSum * multiplier + nextNumber
-            nextImageRead = faxReader.readNextCharacter()
+            nextImage = faxReader.readNextCharacter()
         }
         return currentSum
     }
