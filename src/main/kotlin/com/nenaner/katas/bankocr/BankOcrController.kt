@@ -1,38 +1,40 @@
 package com.nenaner.katas.bankocr
 
 const val numberFormatExceptionMessageText = "An invalid character was encountered in the fax document."
+// @formatter:off
 val imageMap = mapOf(
-        " _ \n" +
+                " _ \n" +
                 "| |\n" +
                 "|_|" to 0,
-        "   \n" +
+                "   \n" +
                 "  |\n" +
                 "  |" to 1,
-        " _ \n" +
+                " _ \n" +
                 " _|\n" +
                 "|_ " to 2,
-        " _ \n" +
+                " _ \n" +
                 " _|\n" +
                 " _|" to 3,
-        "   \n" +
+                "   \n" +
                 "|_|\n" +
                 "  |" to 4,
-        " _ \n" +
+                " _ \n" +
                 "|_ \n" +
                 " _|" to 5,
-        " _ \n" +
+                " _ \n" +
                 "|_ \n" +
                 "|_|" to 6,
-        " _ \n" +
+                " _ \n" +
                 "  |\n" +
                 "  |" to 7,
-        " _ \n" +
+                " _ \n" +
                 "|_|\n" +
                 "|_|" to 8,
-        " _ \n" +
+                " _ \n" +
                 "|_|\n" +
                 " _|" to 9
 )
+// @formatter:on
 
 class BankOcrController(private val faxReader: FaxReader) {
     private val multiplier = 10
