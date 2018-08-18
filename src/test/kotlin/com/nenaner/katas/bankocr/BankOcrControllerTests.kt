@@ -43,5 +43,17 @@ object BankOcrControllerTests : Spek({
                 result shouldBe 12
             }
         }
+        on("scanning an image with multiple characters from the page (\"3456\")") {
+            whenever(mockFaxReader.readNextCharacter())
+                    .thenReturn(imageList[3])
+                    .thenReturn(imageList[4])
+                    .thenReturn(imageList[5])
+                    .thenReturn(imageList[6])
+                    .thenReturn(null)
+            val result = bankOcrController.scan()
+            it("should return the right number (\"3456\")") {
+                result shouldBe 3456
+            }
+        }
     }
 })

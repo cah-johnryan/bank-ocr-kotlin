@@ -37,12 +37,11 @@ val imageMap = mapOf(
 class BankOcrController(private val faxReader: FaxReader) {
     fun scan(): Int? {
         var resultingNumberRead = 0
-        var currentMultiplier = 0
+        val multiplier = 10
         var nextImageRead = faxReader.readNextCharacter()
         while (nextImageRead != null) {
             val nextNumber = getNumberFromImage(nextImageRead)
-            resultingNumberRead = (resultingNumberRead * currentMultiplier) + nextNumber
-            currentMultiplier += 10
+            resultingNumberRead = (resultingNumberRead * multiplier) + nextNumber
             nextImageRead = faxReader.readNextCharacter()
         }
         return resultingNumberRead
