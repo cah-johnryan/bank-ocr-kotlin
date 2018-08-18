@@ -30,11 +30,10 @@ object BankOcrControllerTests : Spek({
         }
         on("scanning an image with an invalid character on the page (\"\")") {
             whenever(mockFaxReader.readNextCharacter()).thenReturn("foo").thenReturn(null)
+            val exception = assertThrows(NumberFormatException::class.java) {
+                bankOcrController.scan()
+            }
             it("should throw the appropriate error") {
-                val exception = assertThrows(NumberFormatException::class.java) {
-                    bankOcrController.scan()
-                }
-
                 assertEquals("An invalid character was encountered in the fax document.", exception.message)
             }
         }
