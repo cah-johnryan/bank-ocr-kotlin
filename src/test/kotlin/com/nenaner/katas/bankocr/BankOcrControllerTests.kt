@@ -7,7 +7,6 @@ import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
-import org.jetbrains.spek.api.dsl.xit
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 
@@ -40,7 +39,7 @@ object BankOcrControllerTests : Spek({
         on("scanning an image with multiple characters from the page (\"12\")") {
             whenever(mockFaxReader.readNextCharacter()).thenReturn(imageList[1]).thenReturn(imageList[2]).thenReturn(null)
             val result = bankOcrController.scan()
-            xit("should return the right number (\"12\")") {
+            it("should return the right number (\"12\")") {
                 result shouldBe 12
             }
         }
