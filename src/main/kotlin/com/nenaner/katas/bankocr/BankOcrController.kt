@@ -1,5 +1,6 @@
 package com.nenaner.katas.bankocr
 
+const val numberFormatExceptionMessageText = "An invalid character was encountered in the fax document."
 val imageMap = mapOf(
         " _ \n" +
                 "| |\n" +
@@ -39,7 +40,6 @@ class BankOcrController(private val faxReader: FaxReader) {
     }
 
     private fun getNumberFromImage(sourceImage: String): Int {
-        return imageMap[sourceImage]
-                ?: throw NumberFormatException("An invalid character was encountered in the fax document.")
+        return imageMap[sourceImage] ?: throw NumberFormatException(numberFormatExceptionMessageText)
     }
 }

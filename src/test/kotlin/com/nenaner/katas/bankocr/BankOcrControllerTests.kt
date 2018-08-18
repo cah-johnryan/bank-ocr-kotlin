@@ -34,7 +34,7 @@ object BankOcrControllerTests : Spek({
                 bankOcrController.scan()
             }
             it("should throw the appropriate error") {
-                assertEquals("An invalid character was encountered in the fax document.", exception.message)
+                assertEquals(numberFormatExceptionMessageText, exception.message)
             }
         }
         on("scanning an image with multiple characters from the page (\"12\")") {
