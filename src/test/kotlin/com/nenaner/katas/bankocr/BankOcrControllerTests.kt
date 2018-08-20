@@ -14,7 +14,7 @@ object BankOcrControllerTests : Spek({
     given("a bank OCR Controller") {
         val imageList = mutableListOf<String>()
         imageMap.forEach { image, _ -> imageList.add(imageList.size, image) }
-        val mockFaxReader = mock<FaxReader>()
+        val mockFaxReader = mock<FaxControllerInterface>()
         val bankOcrController = BankOcrController(mockFaxReader)
         on("scanning an image with a single character from the page") {
             imageMap.forEach { imageToTest, expectedValue ->
